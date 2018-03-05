@@ -6,7 +6,7 @@ Mobile apps:
 Android: https://play.google.com/store/apps/details?id=com.s490.lasoiree
 iOS: https://itunes.apple.com/ca/app/la-soir%C3%A9e-360/id1230073724?mt=8
 
-## Documentation
+# Documentation
 Below you can find documentation pertaining to the streaming component
 
 ## Class Diagram
