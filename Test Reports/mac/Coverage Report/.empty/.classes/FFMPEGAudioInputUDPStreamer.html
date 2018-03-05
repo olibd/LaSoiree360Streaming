@@ -1,0 +1,153 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FFMPEGAudioInputUDPStreamer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FFMPEGAudioInputUDPStreamer (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FFMPEGAudioInputUDPStreamer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (18/ 22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;import Exceptions.FailedToIOWithFFMPEGError;
+<i>2</i>&nbsp;import org.slf4j.Logger;
+<i>3</i>&nbsp;import org.slf4j.LoggerFactory;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.io.IOException;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Created by olivier on 2017-03-12.
+<i>9</i>&nbsp; */
+<i>10</i>&nbsp;public class FFMPEGAudioInputUDPStreamer implements IInputPreprocessor{
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    private String inputFormat;
+<i>13</i>&nbsp;    private FFMPEGAVDevice device;
+<b class="fc"><i>14</i>&nbsp;    private final String destination = &quot;udp://127.0.0.1:9999&quot;;</b>
+<i>15</i>&nbsp;    private String ffmpegPath;
+<i>16</i>&nbsp;    private Process process;
+<b class="fc"><i>17</i>&nbsp;    private Logger logger = LoggerFactory.getLogger(FFMPEGAudioInputUDPStreamer.class);</b>
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;    public FFMPEGAudioInputUDPStreamer(String inputFormat, FFMPEGAVDevice device){</b>
+<b class="fc"><i>20</i>&nbsp;        this.inputFormat = inputFormat;</b>
+<b class="fc"><i>21</i>&nbsp;        this.device = device;</b>
+<b class="fc"><i>22</i>&nbsp;        ffmpegPath = PathFactory.getInstance().getFFMPEGPath(this.getClass());</b>
+<b class="fc"><i>23</i>&nbsp;    }</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    /**
+<i>26</i>&nbsp;     * Allows activation, this will start an instance of FFMPEG which will begin to stream the given input to the
+<i>27</i>&nbsp;     * destination via UDP
+<i>28</i>&nbsp;     */
+<i>29</i>&nbsp;    @Override
+<i>30</i>&nbsp;    public void activate() {
+<b class="fc"><i>31</i>&nbsp;        ProcessBuilder builder = new ProcessBuilder(ffmpegPath, &quot;-f&quot;, inputFormat, &quot;-i&quot;, &quot;:&quot; + device.getName(), &quot;-c:a&quot;, &quot;libfdk_aac&quot;, &quot;-b:a&quot;, &quot;320k&quot;, &quot;-f&quot;, &quot;mpegts&quot;, destination);</b>
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;        builder.redirectErrorStream(true);</b>
+<i>34</i>&nbsp;        try {
+<b class="fc"><i>35</i>&nbsp;            process = builder.start();</b>
+<b class="nc"><i>36</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>37</i>&nbsp;            logger.error(&quot;IOException while activating the preprocessor&quot;, e);</b>
+<b class="nc"><i>38</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>39</i>&nbsp;            throw new FailedToIOWithFFMPEGError();</b>
+<b class="fc"><i>40</i>&nbsp;        }</b>
+<b class="fc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    /**
+<i>45</i>&nbsp;     * Allows deactivation of the UDP stream and destroys the instance of FFMPEG
+<i>46</i>&nbsp;     */
+<i>47</i>&nbsp;    @Override
+<i>48</i>&nbsp;    public void deactivate() {
+<b class="fc"><i>49</i>&nbsp;        process.destroy();</b>
+<b class="fc"><i>50</i>&nbsp;    }</b>
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;    /**
+<i>53</i>&nbsp;     * @return the activation state
+<i>54</i>&nbsp;     */
+<i>55</i>&nbsp;    @Override
+<i>56</i>&nbsp;    public boolean isActive() {
+<b class="fc"><i>57</i>&nbsp;        if(process != null)</b>
+<b class="fc"><i>58</i>&nbsp;            return process.isAlive();</b>
+<i>59</i>&nbsp;        else
+<b class="fc"><i>60</i>&nbsp;            return false;</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    /**
+<i>64</i>&nbsp;     * @return the destination where the output of the preprocessor is sent
+<i>65</i>&nbsp;     */
+<i>66</i>&nbsp;    @Override
+<i>67</i>&nbsp;    public String getDestination() {
+<b class="fc"><i>68</i>&nbsp;        return destination;</b>
+<i>69</i>&nbsp;    }
+<i>70</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-04-09 21:48</div>
+</div>
+</body>
+</html>

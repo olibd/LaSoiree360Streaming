@@ -1,0 +1,28 @@
+1. Download ffmpeg git master
+2. Download blackmagic SDK
+3. use something like ./configure --enable-decklink --extra-cflags="-I/Users/admin/kieran_repos/ffmpeg/Mac/include" --extra-ldflags="-L/Users/admin/kieran_repos/ffmpeg/Mac/include" 
+4. This will probably fail so use Make V=1
+5. This will probably fail so copy paste command and remove -std=c99 as per https://ffmpeg.org/pipermail/ffmpeg-user/2014-November/024313.html
+6. Running the gcc command resulted in failures - so I added 'static' to the three problematic lines listed in this thread http://ffmpeg.gusari.org/viewtopic.php?f=8&t=1789
+7. make - all seems well
+8. ffmpeg -bm_v210 1 -f decklink -i 'UltraStudio 4K@2' -c:v ffv1 -level 3 -c:a copy -vf setfield=tff -t 3 output.mkv
+
+
+lines for reference in case gusari diesL
+CXX   libavdevice/decklink_common.o
+In file included from libavdevice/decklink_common.cpp:26:
+/Users/jimmartin/BMDSDK_10.3.1/Mac/include/DeckLinkAPIDispatch.cpp:56:6: error: no previous prototype for function
+      'InitDeckLinkAPI' [-Werror,-Wmissing-prototypes]
+void    InitDeckLinkAPI (void)
+        ^
+/Users/jimmartin/BMDSDK_10.3.1/Mac/include/DeckLinkAPIDispatch.cpp:77:7: error: no previous prototype for function
+      'IsDeckLinkAPIPresent' [-Werror,-Wmissing-prototypes]
+bool            IsDeckLinkAPIPresent (void)
+                ^
+/Users/jimmartin/BMDSDK_10.3.1/Mac/include/DeckLinkAPIDispatch.cpp:157:6: error: no previous prototype for function
+      'InitBMDStreamingAPI' [-Werror,-Wmissing-prototypes]
+void InitBMDStreamingAPI(void)
+     ^
+3 errors generated.
+make: *** [libavdevice/decklink_common.o] Error 1
+

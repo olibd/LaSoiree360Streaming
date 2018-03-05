@@ -1,0 +1,109 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AVDriverFactory</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AVDriverFactory (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AVDriverFactory</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/ 8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;import java.io.IOException;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;/**
+<i>4</i>&nbsp; * Created by olivier on 16-12-16.
+<i>5</i>&nbsp; */
+<b class="fc"><i>6</i>&nbsp;public abstract class AVDriverFactory {</b>
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;    protected static AVDriverFactory instance;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    public static AVDriverFactory getOrInitInstance(Computer.OSType os) throws IOException {
+<b class="fc"><i>12</i>&nbsp;        if(instance == null){</b>
+<b class="fc"><i>13</i>&nbsp;            if(os == Computer.OSType.MAC)</b>
+<b class="nc"><i>14</i>&nbsp;                instance = new MacAVDriverFactory();</b>
+<b class="fc"><i>15</i>&nbsp;            else if(os == Computer.OSType.WIN)</b>
+<b class="fc"><i>16</i>&nbsp;                instance = new WinAVDriverFactory();</b>
+<i>17</i>&nbsp;        }
+<b class="fc"><i>18</i>&nbsp;        return instance;</b>
+<i>19</i>&nbsp;    }
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    public static AVDriverFactory getInstance(){
+<b class="fc"><i>22</i>&nbsp;        return instance;</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    public abstract AVDriver[] getAVDrivers();
+<i>26</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-01-17 21:26</div>
+</div>
+</body>
+</html>

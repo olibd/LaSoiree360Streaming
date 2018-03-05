@@ -1,0 +1,195 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AVDriver</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AVDriver (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AVDriver</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (40/ 40)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;import Exceptions.AVDeviceDoesNotExistException;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.io.BufferedReader;
+<i>4</i>&nbsp;import java.io.IOException;
+<i>5</i>&nbsp;import java.io.InputStream;
+<i>6</i>&nbsp;import java.io.InputStreamReader;
+<i>7</i>&nbsp;import java.util.HashMap;
+<i>8</i>&nbsp;import java.util.LinkedList;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;/**
+<i>11</i>&nbsp; * Created by olivier on 16-12-16.
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;public abstract class AVDriver {
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    protected HashMap&lt;String, LinkedList&lt;AVDevice&gt;&gt; avDevices;
+<i>16</i>&nbsp;    protected String driverName;
+<i>17</i>&nbsp;    protected AVDevice selectedAudioDevice;
+<i>18</i>&nbsp;    protected AVDevice selectedVideoDevice;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public LinkedList&lt;AVDevice&gt; getAudioDevices() {
+<b class="fc"><i>23</i>&nbsp;        return avDevices.get(&quot;audio&quot;);</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public LinkedList&lt;AVDevice&gt; getVideoDevices() {
+<b class="fc"><i>27</i>&nbsp;        return avDevices.get(&quot;video&quot;);</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public void selectAudioDevice(AVDevice device) throws AVDeviceDoesNotExistException {
+<i>31</i>&nbsp;
+<b class="fc"><i>32</i>&nbsp;        if(avDevices.get(&quot;audio&quot;).contains(device) || device == null)</b>
+<b class="fc"><i>33</i>&nbsp;            selectedAudioDevice = device;</b>
+<i>34</i>&nbsp;        else
+<b class="fc"><i>35</i>&nbsp;            throw new AVDeviceDoesNotExistException(&quot;The AVDevice you are trying to set does not exist in this driver&quot;);</b>
+<b class="fc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public AVDevice getSelectedAudioDevice(){
+<b class="fc"><i>39</i>&nbsp;        return  selectedAudioDevice;</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    public void selectVideoDevice(AVDevice device) throws AVDeviceDoesNotExistException {
+<i>43</i>&nbsp;
+<b class="fc"><i>44</i>&nbsp;        if(avDevices.get(&quot;video&quot;).contains(device))</b>
+<b class="fc"><i>45</i>&nbsp;            selectedVideoDevice = device;</b>
+<i>46</i>&nbsp;        else
+<b class="fc"><i>47</i>&nbsp;            throw new AVDeviceDoesNotExistException(&quot;The AVDevice you are trying to set does not exist in this driver&quot;);</b>
+<b class="fc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    public void resetSelectedVideoDevice(){
+<b class="fc"><i>51</i>&nbsp;        selectedVideoDevice = null;</b>
+<b class="fc"><i>52</i>&nbsp;    }</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public void resetSelectedAudioDevice(){
+<b class="fc"><i>55</i>&nbsp;        selectedAudioDevice = null;</b>
+<b class="fc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public AVDevice getSelectedVideoDevice(){
+<b class="fc"><i>59</i>&nbsp;        return selectedVideoDevice;</b>
+<i>60</i>&nbsp;    }
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;    public String getDriverName(){
+<b class="fc"><i>63</i>&nbsp;        return driverName;</b>
+<i>64</i>&nbsp;    }
+<i>65</i>&nbsp;
+<b class="fc"><i>66</i>&nbsp;    public AVDriver(){</b>
+<b class="fc"><i>67</i>&nbsp;        avDevices = new HashMap&lt;&gt;();</b>
+<b class="fc"><i>68</i>&nbsp;    }</b>
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    protected abstract Process startFFMPEGProcess() throws IOException;
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;    public HashMap&lt;String, LinkedList&lt;AVDevice&gt;&gt; updateAVdevices() throws IOException {
+<b class="fc"><i>73</i>&nbsp;        avDevices.put(&quot;video&quot;, new LinkedList&lt;&gt;());</b>
+<b class="fc"><i>74</i>&nbsp;        avDevices.put(&quot;audio&quot;, new LinkedList&lt;&gt;());</b>
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;        //create new FFMPEG process to get the AV devices
+<b class="fc"><i>77</i>&nbsp;        Process process = startFFMPEGProcess();</b>
+<i>78</i>&nbsp;
+<b class="fc"><i>79</i>&nbsp;        InputStream stdout = process.getInputStream ();</b>
+<b class="fc"><i>80</i>&nbsp;        BufferedReader reader = new BufferedReader (new InputStreamReader(stdout));</b>
+<i>81</i>&nbsp;
+<i>82</i>&nbsp;        //parse the output for the devices
+<i>83</i>&nbsp;        String line;
+<b class="fc"><i>84</i>&nbsp;        String type = &quot;&quot;;</b>
+<b class="fc"><i>85</i>&nbsp;        while ((line = reader.readLine ()) != null &amp;&amp; ! line.trim().equals(&quot;--EOF--&quot;)) {</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;            //search the output for the devices type section
+<b class="fc"><i>88</i>&nbsp;            if(line.contains(&quot;video devices&quot;)) {</b>
+<b class="fc"><i>89</i>&nbsp;                type = &quot;video&quot;;</b>
+<b class="fc"><i>90</i>&nbsp;                continue; //skip the section title, go straight to the device on the next line</b>
+<b class="fc"><i>91</i>&nbsp;            }else if(line.contains(&quot;audio devices&quot;)){</b>
+<b class="fc"><i>92</i>&nbsp;                type = &quot;audio&quot;;</b>
+<b class="fc"><i>93</i>&nbsp;                continue; //skip the section title, go straight to the device on the next line</b>
+<b class="fc"><i>94</i>&nbsp;            }else if (!line.contains(driverName)){</b>
+<i>95</i>&nbsp;                //if we are not in the device section, move to the next line
+<b class="fc"><i>96</i>&nbsp;                type = &quot;&quot;;</b>
+<b class="fc"><i>97</i>&nbsp;                continue;</b>
+<i>98</i>&nbsp;            }
+<i>99</i>&nbsp;
+<b class="fc"><i>100</i>&nbsp;            AVDevice device = getDeviceFromOutputLine(line);</b>
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;            //Add the device to the list
+<b class="fc"><i>103</i>&nbsp;            avDevices.get(type).add(device);</b>
+<b class="fc"><i>104</i>&nbsp;        }</b>
+<b class="fc"><i>105</i>&nbsp;        return avDevices;</b>
+<i>106</i>&nbsp;    }
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;    protected abstract AVDevice getDeviceFromOutputLine(String line);
+<i>109</i>&nbsp;
+<i>110</i>&nbsp;    public abstract String getFFMPEGInputCommand();
+<i>111</i>&nbsp;
+<i>112</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-01-17 21:26</div>
+</div>
+</body>
+</html>
