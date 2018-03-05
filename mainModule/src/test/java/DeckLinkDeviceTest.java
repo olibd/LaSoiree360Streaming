@@ -1,4 +1,6 @@
+import Devices.DeckLinkDevice;
 import Exceptions.OSNotSupportedError;
+import Platform.Computer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,11 +27,6 @@ public class DeckLinkDeviceTest extends AVDeviceTest {
         dummyResolutions = new LinkedList<>();
         dummyResolutions.add("1280x720");
         dummyResolutions.add("1920x1080");
-    }
-
-    @Test
-    public void startFFMPEGProcess() throws Exception {
-        assertNotNull(dDevice.startFFMPEGProcess());
     }
 
     @Test

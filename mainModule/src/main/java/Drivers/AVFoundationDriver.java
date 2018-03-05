@@ -1,13 +1,12 @@
-import Exceptions.AVDeviceDoesNotExistException;
+package Drivers;
+
+import Devices.FFMPEGAVDevice;
 import Exceptions.FailedToIOWithFFMPEGError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.LinkedList;
 
 /**
  * Created by olivier on 16-12-16.
@@ -27,7 +26,7 @@ public class AVFoundationDriver extends FFMPEGAVDriver {
      * @return
      * @throws IOException
      */
-    protected Process startFFMPEGProcess() {
+    public Process startFFMPEGProcess() {
         ProcessBuilder builder = new ProcessBuilder(ffmpegFilepath, "-f", "avfoundation", "-list_devices", "true", "-i", "\"\"");
         new ProcessBuilder();
         builder.redirectErrorStream(true);
@@ -41,12 +40,12 @@ public class AVFoundationDriver extends FFMPEGAVDriver {
     }
 
     /**
-     * Return FFMPEGAVDevice from supplied output line
+     * Return Devices.FFMPEGAVDevice from supplied output line
      *
      * @param line
      * @return
      */
-    protected FFMPEGAVDevice getDeviceFromOutputLine(String line) {
+    public FFMPEGAVDevice getDeviceFromOutputLine(String line) {
 
         String deviceName = line.split("( \\[\\d\\] )+")[1];
         return new FFMPEGAVDevice(deviceName);

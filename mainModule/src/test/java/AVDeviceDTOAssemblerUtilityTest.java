@@ -1,4 +1,11 @@
+import Devices.AVDevice;
+import Devices.AVDeviceDTO;
+import Devices.AVDeviceDTOAssemblerUtility;
+import Drivers.AVDriver;
+import Drivers.AVFoundationDriver;
+import Drivers.DShowDriver;
 import Exceptions.OSNotSupportedError;
+import Platform.Computer;
 import org.junit.Before;
 import org.junit.Test;
 

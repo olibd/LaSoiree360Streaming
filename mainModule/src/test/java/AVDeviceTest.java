@@ -1,3 +1,4 @@
+import Devices.AVDevice;
 import Exceptions.ResolutionNotSupportedException;
 import org.junit.After;
 import org.junit.Before;

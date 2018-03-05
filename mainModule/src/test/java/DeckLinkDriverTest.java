@@ -1,3 +1,9 @@
+import Devices.AVDevice;
+import Devices.DeckLinkDevice;
+import Devices.FFMPEGAVDevice;
+import Drivers.DeckLinkDriver;
+import Drivers.FFMPEGAVDriver;
+import Platform.Computer;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

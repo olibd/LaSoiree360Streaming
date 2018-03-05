@@ -1,3 +1,8 @@
+package Drivers;
+
+import Devices.AVDevice;
+import Devices.AVFoundationAudioDevice;
+import Devices.FFMPEGAVDevice;
 import Exceptions.AVDeviceDoesNotExistException;
 
 import java.io.BufferedReader;
@@ -14,12 +19,12 @@ public class AVFoundationAudioDriver extends AVFoundationDriver {
     }
 
     /**
-     * Return FFMPEGAVDevice from supplied output line
+     * Return Devices.FFMPEGAVDevice from supplied output line
      *
      * @param line
      * @return
      */
-    protected FFMPEGAVDevice getDeviceFromOutputLine(String line) {
+    public FFMPEGAVDevice getDeviceFromOutputLine(String line) {
 
         String deviceName = line.split("( \\[\\d\\] )+")[1];
         return new AVFoundationAudioDevice(deviceName);

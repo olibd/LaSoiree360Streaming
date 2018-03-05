@@ -1,4 +1,8 @@
+package Preprocessors;
+
+import Devices.FFMPEGAVDevice;
 import Exceptions.FailedToIOWithFFMPEGError;
+import Platform.PathFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

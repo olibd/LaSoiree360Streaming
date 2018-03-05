@@ -1,3 +1,8 @@
+package Drivers;
+
+import Devices.AVDevice;
+import Devices.DeckLinkDevice;
+import Devices.FFMPEGAVDevice;
 import Exceptions.FailedToIOWithFFMPEGError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +29,7 @@ public class DeckLinkDriver extends FFMPEGAVDriver {
      *
      * @return
      */
-    protected Process startFFMPEGProcess(){
+    public Process startFFMPEGProcess(){
         ProcessBuilder builder = new ProcessBuilder(ffmpegFilepath, "-f", "decklink", "-list_devices", "1", "-i", "dummy");
         builder.redirectErrorStream(true);
         try {
@@ -72,7 +77,7 @@ public class DeckLinkDriver extends FFMPEGAVDriver {
      * @return
      */
     @Override
-    protected FFMPEGAVDevice getDeviceFromOutputLine(String line) throws IOException {
+    public FFMPEGAVDevice getDeviceFromOutputLine(String line) throws IOException {
         String deviceName = line.split("] \t")[1];
         //clean the string by removing surrounding quotes
         deviceName = deviceName.replaceAll("\'", "");

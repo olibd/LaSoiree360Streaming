@@ -1,3 +1,7 @@
+package Platform;
+
+import Drivers.AVDriver;
+import Drivers.AVDriverFactory;
 import Exceptions.OSNotSupportedError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +53,7 @@ public class Computer {
     }
 
     /**
-     * @return the Computer instance
+     * @return the Platform.Computer instance
      * @throws OSNotSupportedError
      * @throws IOException
      */
@@ -68,14 +72,14 @@ public class Computer {
     }
 
     /**
-     * @return true if Computer is MacOS
+     * @return true if Platform.Computer is MacOS
      */
     public boolean isMac() {
         return OSType.MAC.equals(osType);
     }
 
     /**
-     * @return true if Computer is WinOS
+     * @return true if Platform.Computer is WinOS
      */
     public boolean isWin() {
         return OSType.WIN.equals(osType);

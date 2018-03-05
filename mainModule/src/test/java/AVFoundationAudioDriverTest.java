@@ -1,4 +1,8 @@
+import Devices.AVDevice;
+import Devices.AVFoundationAudioDevice;
 import Exceptions.AVDeviceDoesNotExistException;
+import Drivers.AVFoundationAudioDriver;
+import Platform.Computer;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,3 +1,6 @@
+package Drivers;
+
+import Devices.FFMPEGAVDevice;
 import Exceptions.FailedToIOWithFFMPEGError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +24,7 @@ public class DShowDriver extends FFMPEGAVDriver {
      * @return
      * @throws IOException
      */
-    protected Process startFFMPEGProcess() {
+    public Process startFFMPEGProcess() {
         ProcessBuilder builder = new ProcessBuilder(ffmpegFilepath, "-list_devices", "true", "-f", "dshow", "-i", "dummy");
         builder.redirectErrorStream(true);
         try {
@@ -37,7 +40,7 @@ public class DShowDriver extends FFMPEGAVDriver {
      * @param line
      * @return AVdevice from supplied output line
      */
-    protected FFMPEGAVDevice getDeviceFromOutputLine(String line) {
+    public FFMPEGAVDevice getDeviceFromOutputLine(String line) {
 
         String deviceName = line.split("\"")[1];
         return new FFMPEGAVDevice(deviceName);

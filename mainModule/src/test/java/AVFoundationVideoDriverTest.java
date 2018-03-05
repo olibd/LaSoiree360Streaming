@@ -1,4 +1,8 @@
+import Devices.AVDevice;
+import Devices.FFMPEGAVDevice;
 import Exceptions.AVDeviceDoesNotExistException;
+import Drivers.AVFoundationVideoDriver;
+import Platform.Computer;
 import org.junit.Before;
 import org.junit.Test;
 

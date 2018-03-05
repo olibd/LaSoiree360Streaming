@@ -1,4 +1,8 @@
+package Drivers;
+
+import Devices.AVDevice;
 import Exceptions.AVDeviceDoesNotExistException;
+import Utilities.IActivable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +53,7 @@ public abstract class AVDriver implements IFFMPEGCompatibleDriver {
         if (avDevices.get("audio").contains(device))
             selectedAudioDevice = device;
         else
-            throw new AVDeviceDoesNotExistException("The AVDevice you are trying to set does not exist in this driver");
+            throw new AVDeviceDoesNotExistException("The Devices.AVDevice you are trying to set does not exist in this driver");
     }
 
     /**
@@ -72,7 +76,7 @@ public abstract class AVDriver implements IFFMPEGCompatibleDriver {
         if(avDevices.get("video").contains(device))
             selectedVideoDevice = device;
         else
-            throw new AVDeviceDoesNotExistException("The AVDevice you are trying to set does not exist in this driver");
+            throw new AVDeviceDoesNotExistException("The Devices.AVDevice you are trying to set does not exist in this driver");
     }
 
     /**
@@ -110,7 +114,7 @@ public abstract class AVDriver implements IFFMPEGCompatibleDriver {
     public abstract HashMap<String, LinkedList<AVDevice>> updateAVdevices() throws IOException;
 
     /**
-     * activates the supplied device provided it is an instance of IActivable
+     * activates the supplied device provided it is an instance of Utilities.IActivable
      * @param device
      */
     protected void activateDevice(AVDevice device) {
@@ -119,7 +123,7 @@ public abstract class AVDriver implements IFFMPEGCompatibleDriver {
     }
 
     /**
-     * deactivates the supplied device provided it is an instance of IActivable
+     * deactivates the supplied device provided it is an instance of Utilities.IActivable
      * @param device
      */
     protected void deactivateDevice(AVDevice device) {

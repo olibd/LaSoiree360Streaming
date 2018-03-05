@@ -1,3 +1,5 @@
+package Devices;
+
 import Exceptions.ResolutionNotSupportedException;
 
 import java.util.LinkedList;

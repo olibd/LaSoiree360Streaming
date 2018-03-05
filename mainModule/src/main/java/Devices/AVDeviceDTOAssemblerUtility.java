@@ -1,3 +1,7 @@
+package Devices;
+
+import Drivers.AVDriver;
+
 import java.util.LinkedList;
 
 /**
@@ -6,7 +10,7 @@ import java.util.LinkedList;
 public class AVDeviceDTOAssemblerUtility {
 
     /**
-     * Returns AVDeviceDTO from supplied Driver and Device
+     * Returns Devices.AVDeviceDTO from supplied Driver and Device
      *
      * @param driver
      * @param device

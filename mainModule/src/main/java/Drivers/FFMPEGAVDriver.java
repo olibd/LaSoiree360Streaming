@@ -1,3 +1,9 @@
+package Drivers;
+
+import Devices.AVDevice;
+import Devices.FFMPEGAVDevice;
+import Platform.PathFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +32,7 @@ public abstract class FFMPEGAVDriver extends AVDriver{
      * Start the FFMPEG engine, returns the process
      * @return
      */
-    protected abstract Process startFFMPEGProcess();
+    public abstract Process startFFMPEGProcess();
 
     /**
      * Update AV devices
@@ -80,12 +86,12 @@ public abstract class FFMPEGAVDriver extends AVDriver{
     }
 
     /**
-     * Returns FFMPEGAVDevice from the supplied output line
+     * Returns Devices.FFMPEGAVDevice from the supplied output line
      *
      * @param line
      * @return
      */
-    protected abstract FFMPEGAVDevice getDeviceFromOutputLine(String line) throws IOException;
+    public abstract FFMPEGAVDevice getDeviceFromOutputLine(String line) throws IOException;
 
     /**
      * Returns FFmpeg input command

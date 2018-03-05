@@ -1,3 +1,5 @@
+package Platform;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
@@ -6,7 +8,7 @@ import java.net.URLDecoder;
  *
  * This class is a singleton returning commonly used paths
  */
-class PathFactory {
+public class PathFactory {
 
     private static PathFactory instance;
     private Computer.OSType os;

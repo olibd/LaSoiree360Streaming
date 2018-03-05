@@ -1,4 +1,6 @@
+import Devices.AVDevice;
 import Exceptions.AVDeviceDoesNotExistException;
+import Drivers.AVDriver;
 import org.junit.Test;
 
 import java.util.HashMap;

@@ -1,11 +1,11 @@
-import Exceptions.ResolutionNotSupportedException;
+package Devices;
 
-import java.util.LinkedList;
+import Platform.PathFactory;
 
 /**
  * Created by olivier on 16-12-26.
  *
- * This class represents the device of an FFMPEGAVDriver
+ * This class represents the device of an Drivers.FFMPEGAVDriver
  */
 public class FFMPEGAVDevice extends AVDevice {
     protected String ffmpegPath;

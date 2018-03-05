@@ -1,4 +1,8 @@
+import Drivers.AVDriver;
+import Drivers.DShowDriver;
 import Exceptions.OSNotSupportedError;
+import Drivers.WinAVDriverFactory;
+import Platform.Computer;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;

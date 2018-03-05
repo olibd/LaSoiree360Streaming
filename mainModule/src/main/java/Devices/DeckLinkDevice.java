@@ -1,3 +1,5 @@
+package Devices;
+
 import Exceptions.FailedToIOWithFFMPEGError;
 import Exceptions.ResolutionNotSupportedException;
 

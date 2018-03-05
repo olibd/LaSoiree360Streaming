@@ -1,6 +1,9 @@
+import Drivers.IFFMPEGCompatibleDriver;
 import Exceptions.OSNotSupportedError;
 import Exceptions.CantStartStreamException;
 import Exceptions.StreamIONotSetException;
+import Platform.PathFactory;
+import Presets.IOutputPreset;
 import net.bramp.ffmpeg.FFmpeg;
 import net.bramp.ffmpeg.FFmpegExecutor;
 import net.bramp.ffmpeg.FFprobe;
@@ -143,7 +146,7 @@ public class StreamManager extends Thread {
     }
 
     /**
-     * Will get the FFMPEG executable and instantiate the FFMPEG wrapper. Computer agnostic.
+     * Will get the FFMPEG executable and instantiate the FFMPEG wrapper. Platform.Computer agnostic.
      *
      * @throws IOException
      * @throws OSNotSupportedError

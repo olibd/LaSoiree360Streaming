@@ -1,3 +1,5 @@
+package Drivers;
+import Platform.Computer;
 import java.io.IOException;
 
 /**
@@ -8,7 +10,7 @@ public abstract class AVDriverFactory {
     protected static AVDriverFactory instance;
 
     /**
-     * Init or get the existing instance of AVDriverFactory
+     * Init or get the existing instance of Drivers.AVDriverFactory
      *
      * @param os
      * @return
@@ -25,7 +27,7 @@ public abstract class AVDriverFactory {
     }
 
     /**
-     * Returns the instance of the AVDriverFactory
+     * Returns the instance of the Drivers.AVDriverFactory
      *
      * @return
      */

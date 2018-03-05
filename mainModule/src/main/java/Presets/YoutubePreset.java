@@ -1,3 +1,5 @@
+package Presets;
+
 import net.bramp.ffmpeg.builder.FFmpegBuilder;
 import net.bramp.ffmpeg.builder.FFmpegOutputBuilder;
 
