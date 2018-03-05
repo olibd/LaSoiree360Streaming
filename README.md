@@ -4,6 +4,7 @@ The video streaming software component of the La Soirée 360 project. La Soirée
 Mobile apps:
 
 Android: https://play.google.com/store/apps/details?id=com.s490.lasoiree
+
 iOS: https://itunes.apple.com/ca/app/la-soir%C3%A9e-360/id1230073724?mt=8
 
 # Documentation
